@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>百人の顔 | 未来へ贈るメッセージ 出版企画書</title>
+    
+    <!-- Google Fonts: 読みやすさを最優先した Noto Sans JP -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                    colors: {
+                        base: '#F8FAFC', /* 目に優しいオフホワイト */
+                        primary: '#1E293B', /* コントラストの高い濃いスレート色 */
+                        accent: '#0284C7', /* 落ち着いたブルー */
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- GSAP (オープニングの1回のみ使用) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <style>
+        body {
+            background-color: #F8FAFC;
+            color: #1E293B;
+            /* ご高齢の方でも読みやすいベースフォントサイズ */
+            font-size: 110%; 
+        }
+
+        /* スライド（企画書画像）を美しく見せるための額縁設定 */
+        .slide-container {
+            width: 100%;
+            max-w: 1000px; /* PCでも大きすぎない幅 */
+            margin: 0 auto 4rem auto;
+            background-color: #FFFFFF;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border: 1px solid #E2E8F0;
+            opacity: 0; /* JSでフェードインさせるため初期値0 */
+            transform: translateY(20px);
+        }
+
+        .slide-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* アクションを促すボタンのスタイル */
+        .contact-btn {
+            display: inline-block;
+            background-color: #0284C7;
+            color: #FFFFFF;
+            font-weight: 700;
+            font-size: 1.25rem;
+            padding: 1rem 3rem;
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px rgba(2, 132, 199, 0.3);
+            transition: background-color 0.2s, transform 0.2s;
+            text-decoration: none;
+        }
+        .contact-btn:hover {
+            background-color: #0369A1;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="antialiased pb-20">
+
+    <!-- ヘッダー（極めてシンプルに） -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="text-center sm:text-left">
+                <h1 class="text-xl md:text-2xl font-bold text-primary tracking-wider">百人の顔</h1>
+                <p class="text-sm text-slate-500 mt-1">未来へ贈るメッセージ出版企画</p>
+            </div>
+            <a href="#contact" class="text-accent font-bold hover:underline px-4 py-2 border border-accent rounded-full text-sm">
+                お問い合わせへ進む
+            </a>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ（スライド画像配置エリア） -->
+    <main class="max-w-5xl mx-auto px-4 pt-12 md:pt-20">
+        
+        <div class="text-center mb-12 intro-text opacity-0">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4">出版企画書のご案内</h2>
+            <p class="text-slate-600">以下の資料をスクロールしてご覧ください。</p>
+        </div>
+
+        <!-- 
+          【実装担当者様へ】
+          以下の img タグの src を、書き出したPDFの各ページ画像（JPG等）に差し替えてください。
+          現在設定している画像は、レイアウト確認用のプレースホルダーです。
+        -->
+
+        <!-- スライド1: 表紙 -->
+        <div class="slide-container">
+            <!--  -->
+            <img src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?q=80&w=1200&auto=format&fit=crop" alt="企画書 表紙" class="slide-image">
+        </div>
+
+        <!-- スライド2: 企画趣旨 -->
+        <div class="slide-container">
+            <!--  -->
+            <img src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?q=80&w=1200&auto=format&fit=crop" alt="1. 企画趣旨" class="slide-image">
+        </div>
+
+        <!-- スライド3: 冊子概要・構成 -->
+        <div class="slide-container">
+            <!--  -->
+            <img src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?q=80&w=1200&auto=format&fit=crop" alt="2. 冊子概要・構成" class="slide-image">
+        </div>
+
+        <!-- スライド4: 掲載イメージ -->
+        <div class="slide-container">
+            <!--  -->
+            <img src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?q=80&w=1200&auto=format&fit=crop" alt="掲載イメージ" class="slide-image">
+        </div>
+
+        <!-- スライド5: 本誌に掲載される価値 -->
+        <div class="slide-container">
+            <!--  -->
+            <img src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?q=80&w=1200&auto=format&fit=crop" alt="3. 本誌に掲載される価値" class="slide-image">
+        </div>
+
+        <!-- スライド6: 協賛の位置づけ・協賛内容 -->
+        <div class="slide-container">
+            <!--  -->
+            <img src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?q=80&w=1200&auto=format&fit=crop" alt="4. 協賛の位置づけ・協賛内容" class="slide-image">
+        </div>
+
+        <!-- スライド7: 協賛金額について -->
+        <div class="slide-container">
+            <!--  -->
+            <img src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?q=80&w=1200&auto=format&fit=crop" alt="5. 協賛金額について" class="slide-image">
+        </div>
+
+    </main>
+
+    <!-- お問い合わせ・フッターエリア（明確で読みやすく） -->
+    <footer id="contact" class="max-w-4xl mx-auto px-4 pt-12 pb-20 border-t border-slate-200 mt-8 text-center">
+        <h2 class="text-2xl font-bold text-primary mb-8">本企画へのご協賛・お問い合わせ</h2>
+        
+        <a href="mailto:shiozawa@actilus.co.jp" class="contact-btn mb-12">
+            メールでお問い合わせする
+        </a>
+
+        <div class="bg-white p-8 rounded-lg shadow-sm border border-slate-200 text-left max-w-2xl mx-auto">
+            <p class="font-bold text-lg mb-4 text-primary border-b pb-2">NPO法人先端医療をささえる会</p>
+            <ul class="space-y-3 text-slate-700">
+                <li class="flex items-start">
+                    <span class="font-bold w-20 flex-shrink-0">所在地</span>
+                    <span>〒104-0061<br>東京都中央区銀座6丁目6-1 銀座風月堂ビル5F</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="font-bold w-20 flex-shrink-0">電話番号</span>
+                    <span class="text-lg">03-3569-6700</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="font-bold w-20 flex-shrink-0">担当者</span>
+                    <span>塩澤 <br><span class="text-lg">(携帯: 070-7493-8159)</span></span>
+                </li>
+                <li class="flex items-start mt-4">
+                    <span class="font-bold w-20 flex-shrink-0">Email</span>
+                    <a href="mailto:shiozawa@actilus.co.jp" class="text-accent hover:underline">shiozawa@actilus.co.jp</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- オープニングの控えめなアニメーション -->
+    <script>
+        document.addEventListener("DOMContentLoaded", (event) => {
+            const tl = gsap.timeline();
+            
+            // タイトルのフェードイン
+            tl.to('.intro-text', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power2.out"
+            })
+            // スライド（画像）が順番にフワッと現れる
+            .to('.slide-container', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                stagger: 0.2, // 0.2秒間隔で順番に
+                ease: "power2.out"
+            }, "-=0.4");
+        });
+    </script>
+</body>
+</html>
