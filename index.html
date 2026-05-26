@@ -3,12 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>百人の顔 | 未来へ贈るメッセージ 出版企画書</title>
+    <!-- ▼▼ SEO対策：タイトルに全キーワードを自然に網羅 ▼▼ -->
+    <title>百人の顔 | 林屋克三郎が経営者の人生と哲学を未来へ残すプロジェクト</title>
     
-    <!-- Google Fonts: 読みやすさを最優先した Noto Sans JP -->
+    <!-- ================================================== -->
+    <!-- ▼▼ SEO対策コード（Googleにサイトを正確に伝える設定） ▼▼ -->
+    <!-- ================================================== -->
+    
+    <!-- ▼▼ SEO対策：descriptionに全キーワードとターゲット層への訴求を網羅 ▼▼ -->
+    <meta name="description" content="未来の子供たちへ贈るメッセージ「百人の顔」。発案者・林屋克三郎が、中小企業経営者の経歴や人生の哲学を直接インタビューし、社会的記録として後世に残し共有するための出版プロジェクトです。">
+    
+    <link rel="canonical" href="https://hyakuninnokao026.oops.jp/hundred-face/">
+
+    <!-- ▼▼ SEO対策：OGP（SNSやLINEでシェアされた際のカード表示設定）を追加 ▼▼ -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="百人の顔 | 林屋克三郎が経営者の人生と哲学を未来へ残すプロジェクト">
+    <meta property="og:description" content="未来の子供たちへ贈るメッセージ「百人の顔」。経営者の経歴や人生の哲学を社会的記録として後世に残し共有するプロジェクト。">
+    <meta property="og:url" content="https://hyakuninnokao026.oops.jp/hundred-face/">
+    <meta property="og:site_name" content="百人の顔">
+    <meta property="og:image" content="スクリーンショット 2026-03-19 172649.png"> <!-- ※本番環境の絶対パス推奨 -->
+
+    <!-- ▼▼ SEO対策：構造化データ（JSON-LD）を強化し、林屋氏とプロジェクトの関連性をGoogleに明示 ▼▼ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://hyakuninnokao026.oops.jp/hundred-face/#website",
+          "url": "https://hyakuninnokao026.oops.jp/hundred-face/",
+          "name": "百人の顔",
+          "description": "林屋克三郎が発案する、経営者の人生と哲学を未来へ残す出版プロジェクト。"
+        },
+        {
+          "@type": "Project",
+          "@id": "https://hyakuninnokao026.oops.jp/hundred-face/#project",
+          "name": "百人の顔 プロジェクト",
+          "description": "経営者の人生と哲学を未来の子供たちへ残し、教育に役立てるための社会的記録ポートレートプロジェクト。",
+          "founder": {
+            "@type": "Person",
+            "name": "林屋克三郎",
+            "description": "林屋経営研究所設立者。NPO先端医療をささえる会代表。「百人の顔」企画立案者。"
+          }
+        }
+      ]
+    }
+    </script>
+    
+    <!-- ================================================== -->
+    <!-- ▲▲ SEO対策コード ここまで ▲▲ -->
+    <!-- ================================================== -->
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -16,191 +65,731 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['"Noto Sans JP"', 'sans-serif'],
-                    },
+                    fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'], serif: ['"Noto Serif JP"', 'serif'] },
                     colors: {
-                        base: '#F8FAFC', /* 目に優しいオフホワイト */
-                        primary: '#1E293B', /* コントラストの高い濃いスレート色 */
-                        accent: '#0284C7', /* 落ち着いたブルー */
+                        base: '#FAFAFA',
+                        surface: '#FFFFFF',
+                        textMain: '#1A1A1A',
+                        textMuted: '#475569',
+                        accent: '#0F4C81',
+                        accentDark: '#082F4F',
+                        borderLight: '#E5E7EB'
                     }
                 }
             }
         }
     </script>
 
-    <!-- GSAP (オープニングの1回のみ使用) -->
+    <!-- GSAP & ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <style>
-        body {
-            background-color: #F8FAFC;
-            color: #1E293B;
-            /* ご高齢の方でも読みやすいベースフォントサイズ */
-            font-size: 110%; 
+        /* 全体の禁則処理を強化 */
+        body { background-color: #FAFAFA; color: #1A1A1A; overflow-x: hidden; font-feature-settings: "palt" 1; line-break: strict; }
+        
+        /* 文脈に応じた自動改行（モダンブラウザ対応） */
+        .phrase-wrap {
+            word-break: auto-phrase;
+            overflow-wrap: anywhere;
         }
 
-        /* スライド（企画書画像）を美しく見せるための額縁設定 */
-        .slide-container {
-            width: 100%;
-            max-w: 1000px; /* PCでも大きすぎない幅 */
-            margin: 0 auto 4rem auto;
-            background-color: #FFFFFF;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            border: 1px solid #E2E8F0;
-            opacity: 0; /* JSでフェードインさせるため初期値0 */
-            transform: translateY(20px);
-        }
-
-        .slide-image {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* アクションを促すボタンのスタイル */
-        .contact-btn {
+        /* 単語や助詞の泣き別れを防ぐクラス */
+        .inline-phrase {
             display: inline-block;
-            background-color: #0284C7;
-            color: #FFFFFF;
-            font-weight: 700;
-            font-size: 1.25rem;
-            padding: 1rem 3rem;
-            border-radius: 9999px;
-            box-shadow: 0 4px 6px rgba(2, 132, 199, 0.3);
-            transition: background-color 0.2s, transform 0.2s;
-            text-decoration: none;
+            white-space: normal;
         }
-        .contact-btn:hover {
-            background-color: #0369A1;
-            transform: translateY(-2px);
+
+        /* 見出しのバランス調整 */
+        .text-balance {
+            text-wrap: balance;
+        }
+
+        /* スマホで1行に収まるように最小フォントサイズを調整 */
+        .text-fluid-h1 { font-size: clamp(1.4rem, 4.5vw + 0.5rem, 4rem); line-height: 1.5; letter-spacing: 0.05em; }
+        .text-fluid-h2 { font-size: clamp(1.6rem, 3vw + 1rem, 3.5rem); line-height: 1.4; letter-spacing: 0.05em; }
+        .text-fluid-p { font-size: clamp(0.95rem, 1vw + 0.5rem, 1.125rem); line-height: 2.2; }
+        
+        .parallax-wrapper { overflow: hidden; position: relative; }
+        .parallax-img { width: 100%; height: 120%; object-fit: cover; position: absolute; top: -10%; }
+        
+        /* アニメーション用の文字クラス */
+        .char { display: inline-block; opacity: 0; transform: translateY(100%); }
+        
+        /* スマホ画面向けの改行・泣き別れ防止ルールの追加 */
+        @media (max-width: 768px) {
+            .hero-title { 
+                word-break: keep-all; 
+                overflow-wrap: anywhere; 
+            }
+        }
+        
+        @keyframes scrollLine {
+            0% { transform: scaleY(0); transform-origin: top; }
+            50% { transform: scaleY(1); transform-origin: top; }
+            50.1% { transform: scaleY(1); transform-origin: bottom; }
+            100% { transform: scaleY(0); transform-origin: bottom; }
+        }
+        .animate-scroll-line { animation: scrollLine 2.5s infinite ease-in-out; }
+
+        /* ==========================================================================
+            【極限版】印刷用（プリントアウト）のCSS設定（Webの見た目には影響しません）
+            ========================================================================== */
+        @media print {
+            @page {
+                size: A4;
+                margin: 12mm;
+            }
+
+            body {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                background-color: #FAFAFA !important;
+                color: #1A1A1A !important;
+            }
+
+            /* 不要な要素を非表示 */
+            nav, .animate-scroll-line, a[href^="#"] {
+                display: none !important;
+            }
+
+            /* アニメーション状態の解除 */
+            .char, .gs-reveal, .gs-fade-up, .gs-card {
+                opacity: 1 !important;
+                transform: none !important;
+                visibility: visible !important;
+            }
+
+            /* --- 余白の極限カットと改ページ設定 --- */
+            header, section, footer {
+                min-height: auto !important;
+                height: auto !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                break-after: page !important;
+                page-break-after: always !important;
+            }
+            
+            .py-\[15vh\], .py-\[6vh\] { padding-top: 5mm !important; padding-bottom: 5mm !important; }
+            .mt-16, .mb-16, .mt-24, .mb-20, .my-12, .mb-12, .mb-8, .mt-12, .mb-6 {
+                margin-top: 3mm !important;
+                margin-bottom: 3mm !important;
+            }
+            .gap-12 { gap: 3mm !important; }
+            
+            /* Tailwindの行間用マージンクラスを印刷時のみ強制的に詰める */
+            [class*="space-y-"] > :not([hidden]) ~ :not([hidden]) {
+                margin-top: 2mm !important;
+            }
+
+            /* --- フォントサイズの絶対固定（1段階小さくして押し込み防止） --- */
+            .text-fluid-h1 { font-size: 22pt !important; line-height: 1.3 !important; }
+            .text-fluid-h2 { font-size: 18pt !important; line-height: 1.3 !important; }
+            .text-4xl, .text-5xl, .text-6xl { font-size: 18pt !important; }
+            .text-2xl, .text-3xl { font-size: 14pt !important; }
+            .text-xl { font-size: 12pt !important; }
+            .text-lg { font-size: 11pt !important; }
+            .text-base, .text-sm { font-size: 10pt !important; }
+            p, li { line-height: 1.4 !important; }
+
+            /* --- 画像サイズの強制縮小（もう一段階小さく） --- */
+            .aspect-video, .aspect-\[4\/3\], .aspect-\[3\/4\], .max-w-2xl, .max-w-md, .max-w-xs, .max-w-\[200px\], .max-w-\[180px\], .max-w-\[160px\], .max-w-\[140px\] {
+                max-height: 120px !important; /* 約3cm強に圧縮 */
+                width: auto !important;
+                aspect-ratio: auto !important;
+                display: flex !important;
+                justify-content: center !important;
+                margin-top: 3mm !important;
+                margin-bottom: 3mm !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                border: none !important;
+                box-shadow: none !important;
+            }
+            
+            img {
+                max-height: 120px !important;
+                width: auto !important;
+                object-fit: contain !important;
+                box-shadow: none !important;
+            }
+
+            /* パララックス効果の解除 */
+            .parallax-img { position: static !important; }
+            .parallax-wrapper { height: auto !important; }
+
+            /* スマホ用改行を印刷時に無効化 */
+            .md\:hidden { display: none !important; }
+            
+            /* 要素の途中での不自然な改ページを防ぐ */
+            .gs-card, ul, li, .bg-white\/5, .bg-gray-100, .bg-white, .grid {
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+            }
         }
     </style>
 </head>
-<body class="antialiased pb-20">
+<body id="top" class="antialiased selection:bg-accentDark selection:text-white">
 
-    <!-- ヘッダー（極めてシンプルに） -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div class="text-center sm:text-left">
-                <h1 class="text-xl md:text-2xl font-bold text-primary tracking-wider">百人の顔</h1>
-                <p class="text-sm text-slate-500 mt-1">未来へ贈るメッセージ出版企画</p>
+    <!-- ナビゲーション -->
+    <nav class="fixed top-0 left-0 w-full z-50 p-4 md:px-12 md:py-6 flex justify-between items-center bg-base/90 backdrop-blur-md border-b border-borderLight transition-transform duration-300" id="navbar">
+        <a href="#top" class="flex flex-col cursor-pointer">
+            <!-- ▼▼ SEO対策：見た目は変えずに、隠し文字(sr-only)でH1タグに全キーワードを仕込む ▼▼ -->
+            <h1 class="font-serif text-lg md:text-xl tracking-[0.1em] font-semibold text-textMain">百人の顔<span class="sr-only"> | 林屋克三郎が発案する、経営者の人生と哲学を未来の子供たちへ残す出版プロジェクト</span></h1>
+            <div class="font-sans text-[9px] md:text-xs tracking-[0.1em] text-textMuted font-bold mt-1 uppercase">Message to the Future</div>
+        </a>
+        <a href="#contact" class="bg-accentDark text-white font-sans text-xs md:text-sm font-bold tracking-widest px-6 py-3 rounded-full hover:bg-accent transition-colors duration-300 shadow-sm">
+            お問い合わせ
+        </a>
+    </nav>
+
+    <!-- ヒーローセクション：【切り口1】社会的価値・資産 -->
+    <header class="relative w-full min-h-screen flex flex-col justify-center items-center px-[8vw] bg-base overflow-hidden pt-32 pb-24">
+        
+        <div class="text-center z-10 w-full max-w-6xl flex flex-col items-center">
+            <p class="font-sans text-accent tracking-[0.3em] mb-6 md:mb-8 uppercase text-xs font-semibold gs-reveal opacity-0">Future Archive Project</p>
+            
+            <!-- メインコピー -->
+            <h2 class="font-serif text-fluid-h1 font-medium tracking-tight mb-8 hero-title text-accentDark text-balance">あなたの人生と哲学を、<br>未来の子供たちの教育に、<br>役立たせてもらえませんか？</h2>
+
+            <div class="w-12 h-[1px] bg-accentDark mx-auto my-6 gs-reveal opacity-0"></div>
+            
+            <p class="font-serif text-base md:text-xl text-textMuted gs-reveal opacity-0 tracking-[0.2em] font-bold mb-12">
+                100人の経営者が紡ぐ、<br class="md:hidden">次世代への哲学。
+            </p>
+
+            <!-- 百人の顔 表紙画像 -->
+            <div class="gs-reveal opacity-0 w-full max-w-[260px] md:max-w-xs lg:max-w-sm relative mt-4">
+                <!-- ▼▼ SEO対策：alt属性にキーワードを追加 ▼▼ -->
+                <img src="スクリーンショット 2026-03-19 172649.png" alt="経営者としての経歴や人生の哲学を後世に残し、未来の子供たちと共有するプロジェクト『百人の顔』表紙画像" class="w-full h-auto object-cover shadow-2xl border border-borderLight/50 rounded-sm">
             </div>
-            <a href="#contact" class="text-accent font-bold hover:underline px-4 py-2 border border-accent rounded-full text-sm">
-                お問い合わせへ進む
-            </a>
+        </div>
+        
+        <div class="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center opacity-0 gs-reveal pointer-events-none">
+            <span class="font-sans text-[10px] tracking-[0.3em] text-textMuted mb-4 font-bold">SCROLL</span>
+            <div class="w-[1px] h-12 md:h-16 bg-borderLight overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-full bg-textMain origin-top animate-scroll-line"></div>
+            </div>
         </div>
     </header>
 
-    <!-- メインコンテンツ（スライド画像配置エリア） -->
-    <main class="max-w-5xl mx-auto px-4 pt-12 md:pt-20">
-        
-        <div class="text-center mb-12 intro-text opacity-0">
-            <h2 class="text-2xl md:text-3xl font-bold mb-4">出版企画書のご案内</h2>
-            <p class="text-slate-600">以下の資料をスクロールしてご覧ください。</p>
+    <!-- 【新設】メッセージセクション（1画面・1ページに収める調整） -->
+    <section class="py-[6vh] px-[8vw] bg-accentDark text-white relative overflow-hidden min-h-[95vh] flex flex-col justify-center break-inside-avoid">
+        <div class="max-w-4xl mx-auto text-center gs-fade-up phrase-wrap w-full">
+            <p class="font-serif text-base md:text-xl leading-loose tracking-widest font-medium mb-4 opacity-90">
+                <span class="inline-phrase">嘗ては、</span><br class="md:hidden">
+                <span class="inline-phrase">勤勉の象徴として二宮尊徳、</span><br>
+                <span class="inline-phrase">今日では、</span><br class="md:hidden">
+                <span class="inline-phrase">夢の象徴として大谷翔平が、</span><br>
+                <span class="inline-phrase">教科書にのっていますが、</span>
+            </p>
+            <p class="font-serif text-base md:text-xl leading-loose tracking-widest font-medium mb-6 opacity-90">
+                <span class="inline-phrase">これからは、</span><br class="md:hidden">
+                <span class="inline-phrase">社会を支える象徴として、</span><br>
+                <span class="inline-phrase">中小零細企業の経営者の皆様が、</span><br>
+                <span class="inline-phrase">取り上げられるべきではないですか！</span>
+            </p>
+            <div class="w-12 h-[1px] bg-white/30 mx-auto my-6"></div>
+            
+            <!-- リードコピー級（text-fluid-h2）の大きなサイズ -->
+            <h2 class="font-serif text-fluid-h2 leading-tight md:leading-snug tracking-widest font-bold mb-6 text-balance">
+                <span class="inline-phrase">だから、あなたこそが、</span><br>
+                <span class="inline-phrase">青少年の教材に</span><span class="inline-phrase">なって欲しくて、</span><br>
+                <span class="inline-phrase">インタビューを</span><span class="inline-phrase">させて欲しいのです。</span>
+            </h2>
+            
+            <!-- 経営者の画像1（このセクション内に含め、高さを節約） -->
+            <div class="w-full max-w-[140px] md:max-w-[180px] mx-auto mt-2 aspect-[3/4] bg-white/5 rounded-sm overflow-hidden border border-white/20 relative shadow-2xl hover:-translate-y-1 transition-transform duration-300">
+                <img src="スクリーンショット 2026-04-04 162652.png" alt="人生の哲学や経歴を未来へ語り継ぐ経営者のポートレート" loading="lazy" class="w-full h-full object-cover opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500">
+            </div>
         </div>
+    </section>
 
-        <!-- 
-          【実装担当者様へ】
-          以下の img タグの src を、書き出したPDFの各ページ画像（JPG等）に差し替えてください。
-          現在設定している画像は、レイアウト確認用のプレースホルダーです。
-        -->
+    <!-- メッセージセクション2（3ページ目：家電） -->
+    <section class="py-[15vh] px-[8vw] bg-surface text-accentDark relative overflow-hidden border-b border-borderLight">
+        <div class="max-w-4xl mx-auto text-center gs-fade-up phrase-wrap">
+            <p class="font-serif text-xl md:text-3xl leading-loose tracking-widest font-bold mb-12 text-balance">
+                嘗て、我が国は、<br class="md:hidden">
+                <span class="inline-phrase">家電や、パソコン、</span><br class="md:hidden">
+                <span class="inline-phrase">スマートフォンなど、</span><br>
+                <span class="inline-phrase">世界に冠たる、</span><br class="md:hidden">
+                <span class="inline-phrase">物作り大国でした。</span>
+            </p>
+            <div class="w-12 h-[1px] bg-accent/30 mx-auto my-12"></div>
+            <p class="font-serif text-lg md:text-2xl leading-loose tracking-widest font-medium text-textMuted mb-12 text-balance">
+                <span class="inline-phrase">それが、いつの間にか、</span><br class="md:hidden">
+                <span class="inline-phrase">韓国や中国の台頭で、</span><br>
+                <span class="inline-phrase">失われてしまったのです。</span>
+            </p>
 
-        <!-- スライド1: 表紙 -->
-        <div class="slide-container">
-            <!--  -->
-            <img src="スクリーンショット 2026-03-19 145829.png" alt="企画書 表紙" class="slide-image">
+            <div class="max-w-2xl mx-auto mt-16 aspect-[4/3] bg-gray-100 rounded-sm overflow-hidden border border-borderLight relative shadow-xl hover:-translate-y-1 transition-transform duration-300">
+                <img src="https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?q=80&w=800&auto=format&fit=crop" alt="かつて日本のものづくり大国を象徴した家電製品の記録" loading="lazy" class="w-full h-full object-cover">
+            </div>
         </div>
+    </section>
 
-        <!-- スライド2: 企画趣旨 -->
-        <div class="slide-container">
-            <!--  -->
-            <img src="スクリーンショット 2026-03-19 145848.png" alt="1. 企画趣旨" class="slide-image">
+    <!-- 追加：メッセージセクション2.5（4ページ目：治安） -->
+    <section class="py-[15vh] px-[8vw] bg-base text-accentDark relative overflow-hidden border-b border-borderLight">
+        <div class="max-w-4xl mx-auto text-center gs-fade-up phrase-wrap">
+            <p class="font-serif text-xl md:text-3xl leading-loose tracking-widest font-bold mb-12 text-balance">
+                <span class="inline-phrase">そして、嘗て、日本は、</span><br>
+                <span class="inline-phrase">世界一平和で</span><br class="md:hidden"><span class="inline-phrase">安全な国でした。</span>
+            </p>
+            <div class="w-12 h-[1px] bg-accent/30 mx-auto my-12"></div>
+            <p class="font-serif text-lg md:text-2xl leading-loose tracking-widest font-medium text-textMuted mb-12 text-balance">
+                <span class="inline-phrase">それが、いつの間にか、</span><br>
+                <span class="inline-phrase">詐欺師と強盗の蔓延る国に</span><br class="md:hidden">
+                <span class="inline-phrase">なってしまったのです。</span>
+            </p>
+
+            <div class="max-w-2xl mx-auto mt-16 aspect-[4/3] bg-gray-100 rounded-sm overflow-hidden border border-borderLight relative shadow-xl hover:-translate-y-1 transition-transform duration-300">
+                <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=800&auto=format&fit=crop" alt="現代の社会課題や治安の低下を伝える新聞記事" loading="lazy" class="w-full h-full object-cover grayscale">
+            </div>
         </div>
+    </section>
 
-        <!-- スライド3: 冊子概要・構成 -->
-        <div class="slide-container">
-            <!--  -->
-            <img src="スクリーンショット 2026-03-19 145901.png" alt="2. 冊子概要・構成" class="slide-image">
+    <!-- メッセージセクション3（5ページ目） -->
+    <section class="py-[15vh] px-[8vw] bg-accentDark text-white relative overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center gs-fade-up phrase-wrap">
+            <h2 class="font-serif text-2xl md:text-4xl leading-relaxed tracking-widest font-bold mb-16 text-white/90 text-balance">
+                何故なのでしょうか？
+            </h2>
+            
+            <p class="font-serif text-lg md:text-2xl leading-loose tracking-widest font-medium mb-16 opacity-90">
+                <span class="inline-phrase">鎌倉時代にはじまった武士道、</span><br>
+                <span class="inline-phrase">戦国時代にはじまった茶道、</span><br>
+                <span class="inline-phrase">江戸時代に、全国津々浦々まで</span><span class="inline-phrase">広がった寺子屋が、</span><br>
+                <span class="inline-phrase">士農工商・男女の区別なく、</span><span class="inline-phrase">世界有数の識字率の高さと、</span><br>
+                <span class="inline-phrase">和を重んじ、道を追求する、また、</span><span class="inline-phrase">物の哀れさを理解する</span><br class="md:hidden"><span class="inline-phrase">日本人らしさを育てたのです。</span>
+            </p>
+            
+            <div class="w-12 h-[1px] bg-white/30 mx-auto my-12"></div>
+            
+            <!-- リードコピー級（text-fluid-h2）の大きなサイズに変更 -->
+            <h3 class="font-serif text-fluid-h2 leading-tight md:leading-snug tracking-widest font-bold mb-16 text-balance">
+                <span class="inline-phrase">だから、世界一の</span><br class="md:hidden">
+                <span class="inline-phrase">平和と安全な国が</span><span class="inline-phrase">出来たのです。</span>
+            </h3>
+
+            <div class="max-w-2xl mx-auto mt-16 aspect-video bg-white/5 rounded-sm overflow-hidden border border-white/20 relative shadow-2xl hover:-translate-y-1 transition-transform duration-300">
+                <!-- ▼▼ SEO対策：alt属性にお茶・哲学関連のキーワードを補強 ▼▼ -->
+                <img src="Gemini_Generated_Image_6c5d6l6c5d6l6c5d.png" alt="鎌倉時代から続く日本の精神性や哲学を象徴する茶道のイメージ" loading="lazy" class="w-full h-full object-cover opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500">
+            </div>
         </div>
+    </section>
 
-        <!-- スライド4: 掲載イメージ -->
-        <div class="slide-container">
-            <!--  -->
-            <img src="スクリーンショット 2026-03-19 145921.png" alt="掲載イメージ" class="slide-image">
+    <!-- メッセージセクション4（5ページ目） -->
+    <section class="py-[15vh] px-[8vw] bg-surface text-accentDark relative overflow-hidden border-b border-borderLight">
+        <div class="max-w-4xl mx-auto text-center gs-fade-up phrase-wrap">
+            <p class="font-serif text-lg md:text-2xl leading-loose tracking-widest font-medium mb-16 text-textMuted">
+                <span class="inline-phrase">ところが、</span><span class="inline-phrase">それらの</span><span class="inline-phrase">日本人らしさが、</span><br>
+                <span class="inline-phrase">日本を強くしたと恐れる</span><br class="md:hidden"><span class="inline-phrase">マッカーサーの占領政策により、</span><br>
+                <span class="inline-phrase">日本の教育政策を</span><span class="inline-phrase">滅茶苦茶にされてしまい、</span><br>
+                <span class="inline-phrase">身勝手で、</span><span class="inline-phrase">自分のことしか考えない、</span><br>
+                <span class="inline-phrase">ぐうたらな、</span><span class="inline-phrase">今日の日本人を</span><br class="md:hidden"><span class="inline-phrase">つくられてしまったのです。</span>
+            </p>
+
+            <div class="w-12 h-[1px] bg-accent/30 mx-auto my-12"></div>
+            
+            <h2 class="font-serif text-fluid-h2 leading-tight md:leading-snug tracking-widest font-bold text-balance mb-8">
+                <span class="inline-phrase">だから、いまこそ、</span><br>
+                <span class="inline-phrase">我が国の教育政策を</span><br>
+                <span class="inline-phrase">変えなくてはならないのです。</span>
+            </h2>
+
+            <div class="max-w-md mx-auto mt-16 aspect-[3/4] bg-gray-100 rounded-sm overflow-hidden border border-borderLight relative shadow-2xl hover:-translate-y-1 transition-transform duration-300">
+                <img src="スクリーンショット 2026-04-04 174608.png" alt="戦後の日本の教育・精神史に影響を与えたマッカーサーの記録" loading="lazy" class="w-full h-full object-cover grayscale contrast-125">
+            </div>
         </div>
+    </section>
 
-        <!-- スライド5: 本誌に掲載される価値 -->
-        <div class="slide-container">
-            <!--  -->
-            <img src="スクリーンショット 2026-03-19 145943.png" alt="3. 本誌に掲載される価値" class="slide-image">
+    <!-- メッセージセクション5（6ページ目） -->
+    <section class="py-[15vh] px-[8vw] bg-accentDark text-white relative overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center gs-fade-up phrase-wrap">
+            <h2 class="font-serif text-2xl md:text-4xl leading-relaxed tracking-widest font-bold mb-16 text-balance">
+                「百人の顔」<br class="md:hidden">プロジェクトは、<br class="md:hidden">
+                広告ではありません。<br>
+                従って、広告掲載料は<br class="md:hidden">頂きません。
+            </h2>
+            
+            <div class="w-12 h-[1px] bg-white/30 mx-auto my-12"></div>
+            
+            <p class="font-serif text-lg md:text-2xl leading-loose tracking-widest font-medium opacity-90 mb-20">
+                <span class="inline-phrase">仮に、広告料を頂いても、</span><br class="md:hidden"><span class="inline-phrase">掲載することは、できません。</span><br><br>
+                <span class="inline-phrase">「百人の顔」プロジェクトは、</span><br class="md:hidden"><span class="inline-phrase">当プロジェクトの発案者であり、</span><br>
+                <span class="inline-phrase">弊社代表取締役 林屋克三郎が、</span><br>
+                <span class="inline-phrase">直接、お一人お一人から</span><br class="md:hidden"><span class="inline-phrase">インタビューをさせて頂き、</span><br>
+                <span class="inline-phrase">林屋から、「百人の顔」への</span><br class="md:hidden"><span class="inline-phrase">掲載をお願いした方だけに、</span><br>
+                <span class="inline-phrase">掲載をお願いするものです。</span>
+            </p>
+
+            <div class="w-full max-w-[160px] md:max-w-[200px] mx-auto mt-12 aspect-[3/4] bg-white/5 rounded-sm overflow-hidden border border-white/20 relative shadow-2xl hover:-translate-y-1 transition-transform duration-300">
+                <img src="スクリーンショット 2026-04-04 174909.png" alt="『百人の顔』発案者・林屋克三郎のポートレート" loading="lazy" class="w-full h-full object-cover opacity-90 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500">
+            </div>
+
+            <div class="mt-24 text-left max-w-3xl mx-auto bg-white/5 p-8 md:p-12 rounded-sm border border-white/20 shadow-lg relative">
+                <div class="absolute top-0 left-0 w-1 h-full bg-white/50"></div>
+                <h3 class="font-serif text-2xl md:text-3xl font-bold mb-10 text-center tracking-widest border-b border-white/20 pb-6 text-balance">林屋克三郎の略歴</h3>
+                
+                <div class="space-y-10 font-sans text-sm md:text-base leading-loose text-white/90">
+                    <div>
+                        <p class="font-bold text-lg mb-2 text-white tracking-widest border-b border-white/10 inline-block pb-1">生年月日</p>
+                        <p class="mt-2">1943年5月23日</p>
+                    </div>
+                    
+                    <div>
+                        <p class="font-bold text-lg mb-2 text-white tracking-widest border-b border-white/10 inline-block pb-1">父親について</p>
+                        <p class="mt-2 phrase-wrap">
+                            林屋友次郎<br>
+                            明治19年5月15日、石川県金沢生まれ。<br>
+                            明治43年　慶應義塾大学理財科を卒業。<br>
+                            大正4年　東京鋼材を創業、社長に就任。（のち岩崎小弥太と組んで、三菱鋼材）、大正15年同社社長を辞任。駒澤大学教授に就任。<br>
+                            昭和15年　東京帝国大学より、文学博士の学位を受ける。<br>
+                            敗戦時、マッカーサーが、天皇制存続の根拠となった「天皇制の歴史的根拠」の著者。<br>
+                            戦後、実業界に戻り、会社更生法の立法に奔走、自ら初代管財人に就任。<br>
+                            また、戦後、国家が敗戦で、救済出来ないでいた傷病兵を、三笠宮を名誉総裁にして、私財で、友愛十字会を設立、救済にあたる。<br>
+                            昭和28年12月21日、心筋梗塞により逝去。享年67歳。
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <p class="font-bold text-lg mb-2 text-white tracking-widest border-b border-white/10 inline-block pb-1">略歴・半生</p>
+                        <p class="mt-2 phrase-wrap">麻布中学校・高等学校卒業、慶應義塾大学法学部法律学科卒業、三菱銀行入行、その後、衆議院議員園田直代議士の秘書を経て、独立。<br>林屋経営研究所を設立。三菱グループ筆頭顧問弁護士河村卓也弁護士指導のもと、倒産寸前の零細企業の救済、及び、大手企業の企画営業に参加した。イベント多数企画。今日に至る。半生のうちに、何度も、成功と失敗を繰り返し、何度も、ドン底から這い上がった経験多数。83歳。</p>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <!-- スライド6: 協賛の位置づけ・協賛内容 -->
-        <div class="slide-container">
-            <!--  -->
-            <img src="スクリーンショット 2026-03-19 145957.png" alt="4. 協賛の位置づけ・協賛内容" class="slide-image">
+    <!-- メッセージセクション6（7ページ目） -->
+    <section class="py-[15vh] px-[8vw] bg-surface text-accentDark relative overflow-hidden border-b border-borderLight">
+        <div class="max-w-4xl mx-auto phrase-wrap">
+            <div class="gs-fade-up text-center mb-20">
+                <h2 class="font-serif text-fluid-h2 leading-tight md:leading-snug tracking-widest font-bold text-accentDark text-balance mb-8">
+                    <span class="inline-phrase">小学生の時、矢内原忠雄の「余の尊敬する人物」を読んで、</span><br>
+                    <span class="inline-phrase">新渡戸稲造に発奮。</span>
+                </h2>
+                <p class="font-serif text-lg md:text-2xl leading-loose tracking-widest font-medium text-textMuted text-balance">
+                    <span class="inline-phrase">その経験をもとに、</span><br class="md:hidden">
+                    <span class="inline-phrase">「百人の顔」を企画立案する。</span>
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-3xl mx-auto gs-fade-up">
+                <div class="bg-base p-8 rounded-sm border border-borderLight shadow-sm">
+                    <h3 class="font-serif text-xl font-bold mb-6 text-accent border-b border-accent/20 pb-2 inline-block">尊敬する人物</h3>
+                    <ul class="font-serif text-lg leading-loose space-y-2">
+                        <li>東郷平八郎</li>
+                        <li>秋山　真之</li>
+                    </ul>
+                </div>
+                <div class="bg-base p-8 rounded-sm border border-borderLight shadow-sm">
+                    <h3 class="font-serif text-xl font-bold mb-6 text-accent border-b border-accent/20 pb-2 inline-block">師事した人物</h3>
+                    <ul class="font-serif text-lg leading-loose space-y-2">
+                        <li>川端　康成</li>
+                        <li>井上　　靖</li>
+                        <li>司馬遼太郎</li>
+                        <li>脇　　　正</li>
+                        <li>園田　　直</li>
+                        <li>河村　卓也</li>
+                        <li>堤　　清二</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-24 flex flex-col items-center gs-fade-up">
+                <div class="w-full max-w-[200px] md:max-w-[240px] relative group cursor-pointer">
+                    <!-- ▼▼ SEO対策：alt属性の補強 ▼▼ -->
+                    <img src="スクリーンショット 2026-04-04 174747.png" alt="林屋克三郎の著書・経営者の人生と哲学の記録となるプロジェクトの関連書籍" loading="lazy" class="w-full h-auto object-cover rounded-r-md rounded-l-sm shadow-[15px_15px_25px_rgba(0,0,0,0.4)] border border-borderLight group-hover:-translate-y-2 group-hover:shadow-[15px_25px_30px_rgba(0,0,0,0.5)] transition-all duration-500" style="border-left: 5px solid #1a1a1a;">
+                    <div class="absolute inset-0 bg-gradient-to-r from-white/30 via-transparent to-transparent pointer-events-none rounded-r-md w-6"></div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <!-- スライド7: 協賛金額について -->
-        <div class="slide-container">
-            <!--  -->
-            <img src="スクリーンショット 2026-03-19 150009.png" alt="5. 協賛金額について" class="slide-image">
+    <!-- メッセージセクション7（10ページ目：企画趣旨） -->
+    <section class="py-[15vh] px-[8vw] bg-base text-accentDark relative overflow-hidden border-b border-borderLight">
+        <div class="max-w-4xl mx-auto phrase-wrap">
+            <div class="text-center mb-16 gs-fade-up">
+                <h2 class="font-serif text-3xl md:text-5xl font-bold text-accentDark tracking-widest">企画趣旨</h2>
+            </div>
+            
+            <div class="gs-fade-up bg-white p-8 md:p-16 rounded-sm border border-borderLight shadow-sm">
+                <p class="font-serif text-lg md:text-2xl leading-loose tracking-widest font-medium mb-12 text-balance text-center text-textMain">
+                    <span class="inline-phrase">日本の各界で活躍する１００名の経営者に、</span><br class="md:hidden">
+                    <span class="inline-phrase">幼年時代・人生の転機・困難・意思決定の軸・</span><br>
+                    <span class="inline-phrase">経営哲学などを語っていただき、</span><br class="md:hidden">
+                    <span class="inline-phrase">一冊の冊子として編纂します。</span>
+                </p>
+
+                <div class="w-12 h-[1px] bg-accent/30 mx-auto my-12"></div>
+
+                <p class="font-serif text-xl md:text-3xl leading-loose tracking-widest font-bold mb-10 text-center text-balance text-textMain">
+                    <span class="inline-phrase">本企画は、</span><br class="md:hidden"><span class="inline-phrase">単なる成功談集ではありません。</span>
+                </p>
+
+                <ul class="font-serif text-base md:text-xl leading-loose tracking-widest font-medium space-y-4 max-w-2xl mx-auto mb-12 text-textMain">
+                    <li class="flex items-start">
+                        <span class="text-accent mr-3">■</span>
+                        <span class="text-textMain">経営者の思想・価値観を社会的記録として残す</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-accent mr-3">■</span>
+                        <span class="text-textMain">経営という営みの本質を、次世代に手渡す</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-accent mr-3">■</span>
+                        <span class="text-textMain">個人の歩みを「社会的資産」へ昇華させる</span>
+                    </li>
+                </ul>
+
+                <p class="font-serif text-lg md:text-2xl leading-loose tracking-widest font-medium text-center text-balance text-textMain">
+                    <span class="inline-phrase">ことを目的とした、</span><br>
+                    <span class="inline-phrase font-bold text-accentDark">記録性・公共性の高い出版企画です。</span>
+                </p>
+            </div>
         </div>
+    </section>
 
-    </main>
+    <!-- 11ページ目：冊子概要・構成 -->
+    <section class="py-[15vh] px-[8vw] bg-surface text-accentDark relative overflow-hidden border-b border-borderLight">
+        <div class="max-w-5xl mx-auto phrase-wrap">
+            <div class="text-center mb-16 gs-fade-up">
+                <h2 class="font-serif text-3xl md:text-5xl font-bold tracking-widest text-balance">冊子概要・構成</h2>
+                <p class="font-serif text-lg md:text-2xl mt-6 text-textMuted tracking-widest">小学校高学年生が、<br class="md:hidden">一人でも読めるやさしい文章で。</p>
+            </div>
 
-    <!-- お問い合わせ・フッターエリア（明確で読みやすく） -->
-    <footer id="contact" class="max-w-4xl mx-auto px-4 pt-12 pb-20 border-t border-slate-200 mt-8 text-center">
-        <h2 class="text-2xl font-bold text-primary mb-8">本企画へのご協賛・お問い合わせ</h2>
-        
-        <a href="mailto:shiozawa@actilus.co.jp" class="contact-btn mb-12">
-            メールでお問い合わせする
-        </a>
+            <div class="max-w-4xl mx-auto space-y-16">
+                <div class="gs-fade-up">
+                    <h3 class="font-serif text-2xl font-bold border-b border-borderLight pb-4 mb-6 text-accentDark">基本仕様</h3>
+                    <ul class="space-y-4 font-sans text-base md:text-lg font-medium text-textMain leading-loose">
+                        <li class="flex items-start"><span class="text-accent mr-3 mt-1">■</span><span class="text-textMain">想定読者：小学校高学年（5・6年生）～大人</span></li>
+                        <li class="flex items-start"><span class="text-accent mr-3 mt-1">■</span><span class="text-textMain">掲載人数：経営者100名</span></li>
+                        <li class="flex items-start"><span class="text-accent mr-3 mt-1">■</span><span class="text-textMain">判型：A4判 ／ オールカラー</span></li>
+                        <li class="flex items-start"><span class="text-accent mr-3 mt-1">■</span><span class="text-textMain">掲載スペース：1名につき 2ページ</span></li>
+                    </ul>
+                </div>
 
-        <div class="bg-white p-8 rounded-lg shadow-sm border border-slate-200 text-left max-w-2xl mx-auto">
-            <p class="font-bold text-lg mb-4 text-primary border-b pb-2">NPO法人先端医療をささえる会</p>
-            <ul class="space-y-3 text-slate-700">
-                <li class="flex items-start">
-                    <span class="font-bold w-20 flex-shrink-0">所在地</span>
-                    <span>〒104-0061<br>東京都中央区銀座6丁目6-1 銀座風月堂ビル5F</span>
-                </li>
-                <li class="flex items-start">
-                    <span class="font-bold w-20 flex-shrink-0">電話番号</span>
-                    <span class="text-lg">03-3569-6700</span>
-                </li>
-                <li class="flex items-start">
-                    <span class="font-bold w-20 flex-shrink-0">担当者</span>
-                    <span>塩澤 <br><span class="text-lg">(携帯: 070-7493-8159)</span></span>
-                </li>
-                <li class="flex items-start mt-4">
-                    <span class="font-bold w-20 flex-shrink-0">Email</span>
-                    <a href="mailto:shiozawa@actilus.co.jp" class="text-accent hover:underline">shiozawa@actilus.co.jp</a>
-                </li>
-            </ul>
+                <div class="gs-fade-up">
+                    <h3 class="font-serif text-2xl font-bold border-b border-borderLight pb-4 mb-6 text-accentDark">編集方針</h3>
+                    <ul class="space-y-4 font-sans text-base md:text-lg font-medium text-textMain leading-loose">
+                        <li class="flex items-start"><span class="text-accent mr-3 mt-1">■</span><span class="text-textMain">専門用語・業界用語は極力使わない。</span></li>
+                        <li class="flex items-start"><span class="text-accent mr-3 mt-1">■</span><span class="text-textMain">一文を短く、具体例を多く。</span></li>
+                        <li class="flex items-start"><span class="text-accent mr-3 mt-1">■</span><span class="text-textMain">「考え方」「選び方」「失敗の乗り越え方」を中心に構成</span></li>
+                    </ul>
+                </div>
+
+                <div class="gs-fade-up">
+                    <h3 class="font-serif text-2xl font-bold border-b border-borderLight pb-4 mb-6 text-accentDark">主な掲載内容</h3>
+                    <ul class="space-y-4 font-sans text-base md:text-lg font-medium text-textMain mb-12 leading-loose">
+                        <li class="flex items-start"><span class="text-accent mr-3 mt-1">■</span><span class="text-textMain">子どもの頃に大切にしていたこと</span></li>
+                        <li class="flex items-start"><span class="text-accent mr-3 mt-1">■</span><span class="text-textMain">失敗した経験と、そのとき考えたこと</span></li>
+                        <li class="flex items-start"><span class="text-accent mr-3 mt-1">■</span><span class="text-textMain">仕事で迷ったときの判断のしかた</span></li>
+                        <li class="flex items-start"><span class="text-accent mr-3 mt-1">■</span><span class="text-textMain">今も大切にしている考え方</span></li>
+                        <li class="flex items-start"><span class="text-accent mr-3 mt-1">■</span><span class="text-textMain">未来を生きる子どもたちへのメッセージ</span></li>
+                    </ul>
+                    
+                    <div class="w-full bg-white border border-borderLight p-4 md:p-8 shadow-xl rounded-sm">
+                        <img src="スクリーンショット 2026-03-19 172633.png" alt="『百人の顔』本誌見開きサンプル - 経営者の人生と哲学の社会的記録" loading="lazy" class="w-full h-auto object-contain block mx-auto">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12ページ目：本誌に掲載される価値 -->
+    <section class="py-[15vh] px-[8vw] bg-base text-accentDark relative overflow-hidden border-b border-borderLight">
+        <div class="max-w-7xl mx-auto phrase-wrap">
+            <div class="text-center mb-20 gs-fade-up">
+                <h2 class="font-serif text-3xl md:text-5xl font-bold tracking-widest text-balance">本誌に掲載される価値</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="gs-card p-10 border border-borderLight bg-white relative overflow-hidden group shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-accent/10 text-8xl font-serif absolute -top-6 -right-4 select-none">1</div>
+                    <h3 class="font-serif text-xl font-bold mb-6 relative z-10 leading-relaxed text-accentDark">日本を形づくる<br>「百人の顔」</h3>
+                    <p class="text-textMain leading-loose text-base font-medium relative z-10">100名限定の選ばれしリーダーとして、その思想とポートレートを美しく可視化。採用、ブランディング、理念浸透に。長期的に活用できる究極のストーリー型資産を構築します。</p>
+                </div>
+                
+                <div class="gs-card p-10 border border-borderLight bg-white relative overflow-hidden group shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-accent/10 text-8xl font-serif absolute -top-6 -right-4 select-none">2</div>
+                    <h3 class="font-serif text-xl font-bold mb-6 relative z-10 leading-relaxed text-accentDark">出身校へ「百人の顔」を<br>寄贈する社会的意義</h3>
+                    <p class="text-textMain leading-loose text-base font-medium mb-4 relative z-10">協賛頂いた経営者さまの出身校へ、掲載誌を寄贈します。</p>
+                    <ul class="text-textMain leading-loose text-sm font-medium space-y-3 relative z-10">
+                        <li class="flex items-start"><span class="text-accent mr-2 mt-1">■</span><span class="text-textMain">寄贈名義：経営者様ご本人名義</span></li>
+                        <li class="flex items-start"><span class="text-accent mr-2 mt-1">■</span><span class="text-textMain">寄贈先：原則としてご出身小学校（変更可）</span></li>
+                        <li class="flex items-start"><span class="text-accent mr-2 mt-1">■</span><span class="text-textMain">意義：協賛は単なる費用負担ではなく、未来への社会貢献です。</span></li>
+                    </ul>
+                </div>
+
+                <div class="gs-card p-10 border border-borderLight bg-white relative overflow-hidden group shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-accent/10 text-8xl font-serif absolute -top-6 -right-4 select-none">3</div>
+                    <h3 class="font-serif text-xl font-bold mb-6 relative z-10 leading-relaxed text-accentDark">長期的に利用できる<br>ブランディング資産</h3>
+                    <p class="text-textMain leading-loose text-base font-medium mb-4 relative z-10">本誌は以下のような場面で、継続的に活用可能です。</p>
+                    <ul class="text-textMain leading-loose text-sm font-medium space-y-3 mb-4 relative z-10">
+                        <li class="flex items-start"><span class="text-accent mr-2 mt-1">■</span><span class="text-textMain">採用活動・人材育成</span></li>
+                        <li class="flex items-start"><span class="text-accent mr-2 mt-1">■</span><span class="text-textMain">社内研修・理念浸透</span></li>
+                        <li class="flex items-start"><span class="text-accent mr-2 mt-1">■</span><span class="text-textMain">取引先・金融機関との関係構築</span></li>
+                        <li class="flex items-start"><span class="text-accent mr-2 mt-1">■</span><span class="text-textMain">講演・登壇時の紹介資料</span></li>
+                    </ul>
+                    <p class="text-textMain leading-loose text-sm font-medium relative z-10">名刺やWebでは伝えきれない背景を伝える資産となります。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 13ページ目：協賛の位置づけ・協賛内容 -->
+    <section class="py-[15vh] px-[8vw] bg-surface text-accentDark relative overflow-hidden border-b border-borderLight">
+        <div class="max-w-5xl mx-auto phrase-wrap">
+            <div class="text-center mb-16 gs-fade-up">
+                <h2 class="font-serif text-3xl md:text-5xl font-bold tracking-widest text-balance">協賛の位置づけ・協賛内容</h2>
+            </div>
+
+            <div class="bg-white text-textMain border border-borderLight shadow-sm rounded-sm p-8 md:p-16 gs-fade-up">
+                <div class="mb-12">
+                    <p class="font-serif text-xl md:text-2xl font-bold mb-8 text-accentDark leading-relaxed">
+                        本企画における協賛は、広告出稿ではありません。
+                    </p>
+                    <ul class="font-sans text-base md:text-lg leading-loose space-y-4 mb-8 font-medium text-textMain">
+                        <li class="flex items-start"><span class="text-accent mr-3 mt-1">■</span><span class="text-textMain">思想・哲学を未来へ紡ぐ</span></li>
+                        <li class="flex items-start"><span class="text-accent mr-3 mt-1">■</span><span class="text-textMain">次世代教育への直接的な貢献</span></li>
+                        <li class="flex items-start"><span class="text-accent mr-3 mt-1">■</span><span class="text-textMain">経営者自身の歩みを記録文化として残す行為</span></li>
+                    </ul>
+                    <p class="font-serif text-lg md:text-xl font-bold text-textMuted">
+                        という意味を持つ、価値創出型の協賛です。
+                    </p>
+                </div>
+                
+                <div class="border-t border-borderLight pt-12">
+                    <h3 class="font-serif text-2xl font-bold mb-8 text-accentDark">協賛内容</h3>
+                    <div class="grid md:grid-cols-2 gap-x-12 gap-y-4 font-sans text-base md:text-lg font-medium leading-loose text-textMain">
+                        <div class="flex items-start"><span class="text-accent mr-3 mt-1">■</span><span class="text-textMain">冊子への掲載：2ページ構成</span></div>
+                        <div class="flex items-start"><span class="text-accent mr-3 mt-1">■</span><span class="text-textMain">ポートレート写真1点</span></div>
+                        <div class="flex items-start"><span class="text-accent mr-3 mt-1">■</span><span class="text-textMain">インタビュー原稿（1,500字前後）</span></div>
+                        <div class="flex items-start"><span class="text-accent mr-3 mt-1">■</span><span class="text-textMain">編集・ライティング・校正</span></div>
+                        <div class="flex items-start"><span class="text-accent mr-3 mt-1">■</span><span class="text-textMain">アートディレクション・誌面デザイン</span></div>
+                        <div class="flex items-start"><span class="text-accent mr-3 mt-1">■</span><span class="text-textMain">掲載誌の進呈（保存用・贈呈用）</span></div>
+                        <div class="flex items-start"><span class="text-accent mr-3 mt-1">■</span><span class="text-textMain">出身小学校への掲載誌100冊寄贈</span></div>
+                        <div class="flex items-start"><span class="text-accent mr-3 mt-1">■</span><span class="text-textMain">寄贈名義：経営者様ご本人</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 14ページ目：協賛金額について -->
+    <section class="py-[15vh] px-[8vw] bg-accentDark text-white relative overflow-hidden">
+        <div class="max-w-5xl mx-auto phrase-wrap">
+            <div class="text-center mb-16 gs-fade-up">
+                <h2 class="font-serif text-3xl md:text-5xl font-bold tracking-widest text-balance">協賛金額について</h2>
+            </div>
+
+            <div class="gs-fade-up text-center mb-20">
+                <p class="font-serif text-3xl md:text-5xl font-bold mb-16 tracking-widest text-balance">
+                    協賛金額は、自由です。
+                </p>
+                <p class="font-serif text-xl md:text-3xl leading-loose font-medium opacity-90 text-balance">
+                    <span class="inline-phrase">１冊の値段は、3,000円（消費税別)ですから、</span><br class="md:hidden"><span class="inline-phrase">例えば、</span><br>
+                    <span class="inline-phrase">100冊ですと、300,000円（消費税別)</span><br>
+                    <span class="inline-phrase">200冊ですと、</span><br class="md:hidden">
+                    <span class="inline-phrase">600,000円（消費税別)。</span><br>
+                    <span class="inline-phrase">全くのご自由です。</span>
+                </p>
+            </div>
+
+            <div class="bg-white/10 p-8 md:p-12 rounded-sm border border-white/20 max-w-2xl mx-auto gs-fade-up">
+                <h3 class="font-serif text-xl md:text-2xl font-bold mb-6 text-white border-b border-white/20 pb-4">お支払い方法</h3>
+                <p class="font-sans text-base md:text-lg leading-loose mb-12 text-white/90">
+                    お申込み時、1週間以内のお振り込みの場合は、<br>
+                    <span class="text-2xl md:text-3xl font-bold text-white mt-2 inline-block">10%引き</span>とさせていただきます。
+                </p>
+                
+                <h3 class="font-serif text-xl md:text-2xl font-bold mb-6 text-white border-b border-white/20 pb-4">お振り込み口座</h3>
+                <div class="font-sans text-base md:text-lg leading-loose text-white/90">
+                    <p>三菱UFJ銀行　銀座通　支店</p>
+                    <p>普　0362230</p>
+                    <p class="mt-4">NPO 先端医療をささえる会</p>
+                    <p>代表　林屋克三郎</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター（15ページ目） -->
+    <footer id="contact" class="py-[15vh] px-[8vw] bg-textMain text-center text-white relative">
+        <div class="max-w-4xl mx-auto gs-fade-up phrase-wrap">
+            <h2 class="font-serif text-3xl md:text-5xl mb-16 font-bold tracking-widest text-balance">
+                本企画のお問い合わせ
+            </h2>
+            
+            <div class="text-sm md:text-lg text-white/90 space-y-4 pt-12 border-t border-white/20 font-sans inline-block text-left">
+                <p class="font-bold text-white text-xl md:text-2xl mb-8">NPO法人先端医療をささえる会</p>
+                <p>〒104-0061　東京都中央区銀座6丁目6-1 銀座風月堂ビル5F</p>
+                <p>TEL: 03-3569-6700</p>
+                <p>担当携帯: </p>
+            </div>
+            
+            <div class="mt-24 pt-8 border-t border-white/10">
+                <p class="opacity-50 text-xs md:text-sm">&copy; NPO法人先端医療をささえる会</p>
+            </div>
         </div>
     </footer>
 
-    <!-- オープニングの控えめなアニメーション -->
     <script>
-        document.addEventListener("DOMContentLoaded", (event) => {
-            const tl = gsap.timeline();
-            
-            // タイトルのフェードイン
-            tl.to('.intro-text', {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                ease: "power2.out"
+        gsap.registerPlugin(ScrollTrigger);
+        // Hero Animation
+        const heroTitle = document.querySelector('.hero-title');
+        const lines = heroTitle.innerHTML.split(/<br\s*\/?>/i);
+        heroTitle.innerHTML = lines.map(line => {
+            return line.trim().split('').map(char => `<span class="char">${char}</span>`).join('');
+        }).join('<br>');
+
+        gsap.timeline({delay: 0.5})
+            .to('.hero-title .char', { 
+                y: 0, 
+                opacity: 1, 
+                stagger: 0.05, 
+                duration: 1, 
+                ease: "power4.out",
+                onComplete: () => {
+                    document.querySelectorAll('.hero-title .char').forEach(char => {
+                        char.style.display = 'inline';
+                    });
+                }
             })
-            // スライド（画像）が順番にフワッと現れる
-            .to('.slide-container', {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                stagger: 0.2, // 0.2秒間隔で順番に
-                ease: "power2.out"
-            }, "-=0.4");
+            .to('.gs-reveal', { y: 0, opacity: 1, stagger: 0.2, duration: 1, ease: "power2.out" }, "-=0.5");
+
+        // Fade Up Elements
+        gsap.utils.toArray('.gs-fade-up').forEach(el => {
+            gsap.from(el, { scrollTrigger: { trigger: el, start: "top 90%" }, y: 40, opacity: 0, duration: 1.2, ease: "power2.out" });
+        });
+
+        // Parallax
+        gsap.utils.toArray('.parallax-wrapper').forEach(wrapper => {
+            gsap.to(wrapper.querySelector('.parallax-img'), { y: '15%', ease: "none", scrollTrigger: { trigger: wrapper, start: "top bottom", end: "bottom top", scrub: true }});
+        });
+
+        // Navbar Control
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            const navbar = document.getElementById('navbar');
+            if (currentScroll > 100 && currentScroll > lastScroll) {
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                navbar.style.transform = 'translateY(0)';
+            }
+            lastScroll = currentScroll;
+        });
+
+        // Smooth Anchor Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
         });
     </script>
 </body>
